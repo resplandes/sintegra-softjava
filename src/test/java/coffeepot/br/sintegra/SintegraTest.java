@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import coffeepot.br.sintegra.registros.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,13 +44,6 @@ import org.junit.Test;
  * #L%
  */
 
-import coffeepot.br.sintegra.registros.Registro10;
-import coffeepot.br.sintegra.registros.Registro11;
-import coffeepot.br.sintegra.registros.Registro50;
-import coffeepot.br.sintegra.registros.Registro53;
-import coffeepot.br.sintegra.registros.Registro54;
-import coffeepot.br.sintegra.registros.Registro61;
-import coffeepot.br.sintegra.registros.Registro75;
 import coffeepot.br.sintegra.tipos.Convenio;
 import coffeepot.br.sintegra.tipos.DocumentoFiscal;
 import coffeepot.br.sintegra.tipos.Emitente;
@@ -707,13 +701,26 @@ public class SintegraTest {
 		r61.setDataEmissao(dataEmissao);
 		r61.setNumeroOrdemInicial(1);
 		r61.setNumeroOrdemFinal(1);
-		r61.setSerieDocumento("001");
-		r61.setSubSerieDocumento("001");
+		r61.setSerieDocumento("D");
+		//r61.setSubSerieDocumento("001");
 		r61.setValorTotal(10.00);
+		r61.setTotalBaseDeCalculoIcms(null);
 		r61.setValorTotalIcms(0.00);
 		r61.setValorTotalIsentas(0.00);
 		r61.setValorTotalOutras(0.00);
 		r61List.add(r61);
+
+
+		List<Registro61R> r61RList = new ArrayList<>();
+		Registro61R r61R;
+		r61R = new Registro61R();
+		r61R.setAliquotaIcms(0.00);
+		r61R.setBaseDeCalculoIcms(0.00);
+		r61R.setCodigoProduto("1");
+		r61R.setMesAno("042020");
+		r61R.setQuantidade(2.0);
+		r61R.setValorBrutoProduto(20.00);
+		r61RList.add(r61R);
 		
 		
 		List<Registro75> r75List = new ArrayList<>();
@@ -738,6 +745,7 @@ public class SintegraTest {
 		sintegra.setRegistros50(r50List);
 		sintegra.setRegistros54(r54List);
 		sintegra.setRegistros61(r61List);
+		sintegra.setRegistros61R(r61RList);
 		sintegra.setRegistros75(r75List);
 		// sintegra.setRegistros51(r51List);
 		// sintegra.setRegistros53(r53List);
